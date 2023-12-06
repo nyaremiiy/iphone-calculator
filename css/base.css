@@ -7,6 +7,8 @@
   --color-calc-bg: #000;
   --color-def-bg-btn: #333;
   --color-def-active-bg-btn: #888;
+  --color-symb-btn: #fe9e0b;
+  --color-head-btn: #a5a5a5;
 }
 * {
   box-sizing: border-box;

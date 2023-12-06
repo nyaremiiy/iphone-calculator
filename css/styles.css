@@ -7,6 +7,7 @@
 
 .calc {
   background-color: var(--color-calc-bg);
+  max-height: calc(100vh - 30px);
   border-radius: 30px;
   max-width: 428px;
   margin: 0 auto;
@@ -26,4 +27,46 @@
   align-items: center;
   column-gap: 8px;
   display: flex;
+}
+.keyboard {
+  margin-top: 15px;
+}
+.keyboard__row {
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: clamp(0.625rem, 0.402rem + 1.12vw, 0.938rem);
+  column-gap: clamp(0.875rem, 0.607rem + 1.34vw, 1.25rem);
+  display: grid;
+}
+.keyboard__row:last-child {
+  grid-template-columns: 2fr 1fr 1fr;
+}
+.keyboard__btn {
+  background-color: var(--color-def-bg-btn);
+  border-radius: 352px;
+  transition: all 0.3s;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+}
+.keyboard__btn:active {
+  background-color: var(--color-def-active-bg-btn);
+  scale: 0.9;
+}
+.keyboard__btn--zero {
+  aspect-ratio: 0;
+}
+.keyboard__btn--orange {
+  background-color: var(--color-symb-btn);
+}
+.keyboard__btn--siver {
+  background-color: var(--color-head-btn);
+}
+.keyboard__text {
+  font-size: clamp(0.875rem, 0.161rem + 3.57vw, 1.875rem);
+  transform: translate(-50%, -50%);
+  position: absolute;
+  user-select: none;
+  left: 50%;
+  top: 50%;
 }

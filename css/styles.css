@@ -4,3 +4,26 @@
 @import "./fonts.css";
 /* import base */
 @import "./base.css";
+
+.calc {
+  background-color: var(--color-calc-bg);
+  border-radius: 30px;
+  max-width: 428px;
+  margin: 0 auto;
+  height: auto;
+  width: 100%;
+}
+.calc__wrapper {
+  padding: 15px;
+}
+.head {
+  font-size: clamp(0.75rem, 0.482rem + 1.34vw, 1.125rem);
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+.head__icons {
+  align-items: center;
+  column-gap: 8px;
+  display: flex;
+}

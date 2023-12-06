@@ -6,8 +6,38 @@
     <title>Iphone Calculator</title>
     <!-- Connect local styles -->
     <link rel="stylesheet" href="./css/styles.css" />
+    <!-- Connect Awesome Icons -->
+    <script
+      src="https://kit.fontawesome.com/7c70193509.js"
+      crossorigin="anonymous"
+    ></script>
     <!-- Connect js scripts -->
     <script type="module" src="./js/index.js"></script>
   </head>
-  <body></body>
+  <body>
+    <div class="wrapper">
+      <div class="calc">
+        <div class="calc__wrapper">
+          <!-- #region Head -->
+          <div class="head">
+            <div class="head__time" id="js-time">13:09</div>
+            <div class="head__icons">
+              <div class="head__icon">
+                <i class="fa-solid fa-signal"></i>
+              </div>
+              <div class="head__icon">
+                <i class="fa-solid fa-wifi"></i>
+              </div>
+              <div class="head__icon">
+                <i class="fa-solid fa-battery-quarter"></i>
+              </div>
+            </div>
+          </div>
+          <!-- #endregion -->
+          <div class="output"></div>
+          <div class="keyboard"></div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

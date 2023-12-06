@@ -1,3 +1,22 @@
+:root {
+  --ff-base: "Nova Square";
+
+  --color-page-bg: #fff;
+  --color-text-btn: #fff;
+
+  --color-calc-bg: #000;
+  --color-def-bg-btn: #333;
+  --color-def-active-bg-btn: #888;
+}
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-page-bg);
+  color: var(--color-text-btn);
+  font-family: var(--ff-base), sans-serif;
+}
+.wrapper {
+  padding: 30px;
 }

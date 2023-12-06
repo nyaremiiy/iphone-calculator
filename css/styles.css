@@ -70,3 +70,12 @@
   left: 50%;
   top: 50%;
 }
+.output {
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px 0;
+  font-size: 40px;
+  display: flex;
+  gap: 20px;
+}

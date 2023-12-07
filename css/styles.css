@@ -47,7 +47,11 @@
   aspect-ratio: 1 / 1;
   position: relative;
   user-select: none;
-  cursor: pointer;
+}
+@media (min-width: 769px) {
+  .keyboard__btn {
+    cursor: pointer;
+  }
 }
 .keyboard__btn:active {
   background-color: var(--color-def-active-bg-btn);

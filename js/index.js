@@ -123,6 +123,8 @@ function getActiveItem() {
 }
 
 function setPrevCalc() {
-  result[4] = `${result[0] ?? ''}${result[1] ?? ''}${result[2] ?? ''}`;
+  result[4] = `${(result[0] ?? '')?.toString().substr(0, 10)}${(result[1] ?? '')
+    ?.toString()
+    .substr(0, 10)}${(result[2] ?? '')?.toString().substr(0, 10)}`;
   outputPrev.textContent = result[4];
 }

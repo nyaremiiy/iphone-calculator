@@ -14,69 +14,75 @@ function getStringTime() {
 }
 
 setInterval(() => {
-  document.querySelector("#js-time").textContent = getStringTime();
+  document.querySelector('#js-time').textContent = getStringTime();
 }, 1000);
 
-const outputText = document.querySelector(".output__text");
-const outputOption = document.querySelector(".output__option");
+const outputText = document.querySelector('.output__text');
+const outputOption = document.querySelector('.output__option');
+const outputPrev = document.querySelector('.output__prev');
 
-let result = ["", null, "", ""];
+let result = ['', null, '', '', ''];
 
-document.querySelectorAll(".keyboard__btn").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const textBtn = btn.querySelector(".keyboard__text").textContent;
+document.querySelectorAll('.keyboard__btn').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const textBtn = btn.querySelector('.keyboard__text').textContent;
     const activeItem = getActiveItem();
 
     // Numbers and .
     if (textBtn >= 0 && textBtn <= 9) {
-      if (!result[1]) {
-        result[0] = result[0] + textBtn;
-        outputText.textContent = result[0];
+      if (result[activeItem] == '0') {
+        result[activeItem] = result[activeItem] + '.' + textBtn;
       } else {
-        result[2] = result[2] + textBtn;
-        outputText.textContent = result[2];
+        result[activeItem] = result[activeItem] + textBtn;
       }
+      setResultText(result[activeItem]);
+      setPrevCalc();
     }
 
     // Point
-    if (textBtn === ".") {
+    if (textBtn === '.') {
       if (!isPoint(outputText.textContent)) {
-        result[activeItem] = +result[activeItem] + ".";
-        outputText.textContent = result[activeItem];
+        result[activeItem] = +result[activeItem] + '.';
+        setResultText(result[activeItem]);
+        setPrevCalc();
       }
     }
 
     // AC
-    if (textBtn === "AC") {
-      result = ["", null, "", 0];
-      outputText.textContent = "0";
-      outputOption.textContent = "";
+    if (textBtn === 'AC') {
+      result = ['', null, '', 0];
+      setResultText('0');
+      outputOption.textContent = '';
+      setPrevCalc();
     }
 
     // +-*/%
     if (
-      textBtn === "+" ||
-      textBtn === "-" ||
-      textBtn === "X" ||
-      textBtn === "/" ||
-      textBtn === "%"
+      textBtn === '+' ||
+      textBtn === '-' ||
+      textBtn === 'X' ||
+      textBtn === '/' ||
+      textBtn === '%'
     ) {
       result[1] = textBtn;
       outputOption.textContent = textBtn;
+      setPrevCalc();
     }
 
     // =
-    if (textBtn === "=") {
+    if (textBtn === '=') {
       if (result[0] && result[2]) {
-        outputOption.textContent = "=";
+        outputOption.textContent = '=';
+        setPrevCalc();
         resolveOperation(result[1]);
       }
     }
 
     //+/-
-    if (textBtn === "+/-") {
+    if (textBtn === '+/-') {
       result[activeItem] = +result[activeItem] * -1;
-      outputText.textContent = result[activeItem];
+      setResultText(result[activeItem]);
+      setPrevCalc();
     }
     console.log(result);
   });
@@ -84,34 +90,39 @@ document.querySelectorAll(".keyboard__btn").forEach((btn) => {
 
 function resolveOperation(operator) {
   switch (operator) {
-    case "+":
+    case '+':
       result[3] = +result[0] + +result[2];
       break;
-    case "-":
+    case '-':
       result[3] = +result[0] - +result[2];
       break;
-    case "X":
+    case 'X':
       result[3] = +result[0] * +result[2];
       break;
-    case "/":
+    case '/':
       result[3] = +result[0] / +result[2];
       break;
-    case "%":
+    case '%':
       result[3] = +result[0] % +result[2];
       break;
   }
-  setResultText(result[3]);
-  result = [result[3], null, "", ""];
+  setResultText(result[3].toString());
+  result = [result[3], null, '', ''];
 }
 
 function setResultText(res) {
-  outputText.textContent = res.toString().length > 10 ? res.toFixed(10) : res;
+  outputText.textContent = res.length > 10 ? res.substr(0, 10) : res;
 }
 
 function isPoint(res) {
-  return res.includes(".");
+  return res.includes('.');
 }
 
 function getActiveItem() {
-  return result[2] ? 2 : 0;
+  return result[1] ? 2 : 0;
+}
+
+function setPrevCalc() {
+  result[4] = `${result[0] ?? ''}${result[1] ?? ''}${result[2] ?? ''}`;
+  outputPrev.textContent = result[4];
 }

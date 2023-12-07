@@ -1,9 +1,9 @@
 /* import normalize */
-@import "./normalize.css";
+@import './normalize.css';
 /* import fonts */
-@import "./fonts.css";
+@import './fonts.css';
 /* import base */
-@import "./base.css";
+@import './base.css';
 
 .calc {
   background-color: var(--color-calc-bg);
@@ -72,10 +72,18 @@
 }
 .output {
   justify-content: space-between;
+  padding: 40px 0 30px;
   align-items: center;
+  position: relative;
   margin-top: 20px;
-  padding: 20px 0;
   font-size: 40px;
   display: flex;
   gap: 20px;
+}
+.output__prev {
+  position: absolute;
+  font-size: 14px;
+  opacity: 0.4;
+  right: 10px;
+  top: 10px;
 }

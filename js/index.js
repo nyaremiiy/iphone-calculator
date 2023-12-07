@@ -1,22 +1,26 @@
-function getStringTime() {
-  let hours = new Date().getHours();
-  let minutes = new Date().getMinutes();
+// Time
+class Time {
+  #hours = new Date().getHours();
+  #minutes = new Date().getMinutes();
 
-  if (hours >= 0 && hours <= 9) {
-    hours = `0${hours}`;
+  getStringTime() {
+    if (this.#hours >= 0 && this.#hours <= 9) {
+      this.#hours = `0${this.#hours}`;
+    }
+
+    if (this.#minutes >= 0 && this.#minutes <= 9) {
+      this.#minutes = `0${this.#minutes}`;
+    }
+
+    return `${this.#hours}:${this.#minutes}`;
   }
-
-  if (minutes >= 0 && minutes <= 9) {
-    minutes = `0${minutes}`;
-  }
-
-  return `${hours}:${minutes}`;
 }
 
 setInterval(() => {
-  document.querySelector('#js-time').textContent = getStringTime();
+  document.querySelector('#js-time').textContent = new Time().getStringTime();
 }, 1000);
 
+// Calculation
 const outputText = document.querySelector('.output__text');
 const outputOption = document.querySelector('.output__option');
 const outputPrev = document.querySelector('.output__prev');
@@ -60,13 +64,15 @@ document.querySelectorAll('.keyboard__btn').forEach((btn) => {
     if (
       textBtn === '+' ||
       textBtn === '-' ||
-      textBtn === 'X' ||
-      textBtn === '/' ||
+      textBtn === '×' ||
+      textBtn === '÷' ||
       textBtn === '%'
     ) {
-      result[1] = textBtn;
-      outputOption.textContent = textBtn;
-      setPrevCalc();
+      if (result[0]) {
+        result[1] = textBtn;
+        outputOption.textContent = textBtn;
+        setPrevCalc();
+      }
     }
 
     // =
@@ -96,10 +102,10 @@ function resolveOperation(operator) {
     case '-':
       result[3] = +result[0] - +result[2];
       break;
-    case 'X':
+    case '×':
       result[3] = +result[0] * +result[2];
       break;
-    case '/':
+    case '÷':
       result[3] = +result[0] / +result[2];
       break;
     case '%':
@@ -123,8 +129,8 @@ function getActiveItem() {
 }
 
 function setPrevCalc() {
-  result[4] = `${(result[0] ?? '')?.toString().substr(0, 10)}${(result[1] ?? '')
+  result[4] = `${(result[0] ?? '')?.toString().substr(0, 10)} ${(result[1] ?? '')
     ?.toString()
-    .substr(0, 10)}${(result[2] ?? '')?.toString().substr(0, 10)}`;
+    .substr(0, 10)} ${(result[2] ?? '')?.toString().substr(0, 10)}`;
   outputPrev.textContent = result[4];
 }
